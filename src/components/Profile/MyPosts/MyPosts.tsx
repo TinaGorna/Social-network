@@ -4,15 +4,18 @@ import Post from './NewOne/Post';
 import {PostType} from "../../../redux/state";
 
 export type PostsPropsType = {
-    posts: Array<PostType>,
+    posts: PostType[],
     addPost: () => void
     updateNewPostText: (newText: string) => void
     messageForNewPost: string
+
 }
+
+// как зафиксить message
 
 const MyPosts: React.FC<PostsPropsType> = (props) => {
     let postsElements =
-        props.posts.map(p => <Post message={p.message} likesCount={p.likesCount}/>); //добавить сюда key = {p.id}
+        props.posts.map(p => <Post message={p.message} likesCount={p.likesCount}/>); //добавить сюда key = {p.id}??
 
 
     const addPost = () => {

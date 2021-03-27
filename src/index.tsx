@@ -1,19 +1,18 @@
-import state, {addPost, RouteStateType, subscribe} from "./redux/state";
-
-
+import store from "./redux/state";
 import ReactDOM from "react-dom";
 import {BrowserRouter} from "react-router-dom";
 import App from "./App";
 import React from "react";
 
-export let renderEntireTree = (state: RouteStateType) => {
+// как зафиксить
+const renderEntireTree =() => {
     ReactDOM.render(
         <BrowserRouter>
-            <App state={state} addPost = {addPost} />,
+            <App store={store}  />,
         </BrowserRouter>, document.getElementById("root"));
 }
-renderEntireTree(state);
-subscribe(renderEntireTree);
+renderEntireTree ()
+store.subscribe(renderEntireTree)
 
 
 // If you want to start measuring performance in your app, pass a function

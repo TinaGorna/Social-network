@@ -9,6 +9,7 @@ type ProfilePropsType = {
     posts: PostType[]
     updateNewPostText: (newText: string) => void
     messageForNewPost: string
+
 }
 const Profile: React.FC<ProfilePropsType> = (props) => {
     return <div>

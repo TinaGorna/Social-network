@@ -1,8 +1,7 @@
 import React from "react";
 import s from "./Dialogs.module.css"
-import {addMessage, MessageType} from "../../redux/state";
+import {MessageType} from "../../redux/state";
 import Message from "./Message/Message";
-
 
 type DialogsPropsType = {
     addMessage: () => void
@@ -12,6 +11,11 @@ type DialogsPropsType = {
 }
 
 const Dialogs: React.FC<DialogsPropsType> = (props) => {
+
+    function addMessage() {
+        props.addMessage();
+    }
+
     return <div className={s.dialogs}>
         <Message addMessage={addMessage}
                  messageForNewDialog={props.messageForNewDialog}

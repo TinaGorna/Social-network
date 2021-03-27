@@ -1,3 +1,93 @@
+export type StoreType = {
+    _state: RouteStateType
+    changeNewText: (newText: string) => void
+    addPost: () => void
+    _onChange: () => void
+    subscribe: (observer: () => void) => void
+    getState: () => RouteStateType
+    updateNewPostText: (postText: string) => void
+    addMessage: () => void
+    updateNewMessageText: (messageText: string) => void
+    changeNewMessage: (newMessage: string) => void
+}
+
+const store: StoreType = {
+    _state: {
+        profilePage: {
+            messageForNewPost: "",
+            posts: [
+                {id: 1, message: "What's up, man?", likesCount: 12},
+                {id: 2, message: "This is ma first post here", likesCount: 6},
+            ]
+        },
+        dialogsPage: {
+            messageForNewDialog: "",
+            messages: [
+                {id: 1, message: "Hi, lady"},
+                {id: 2, message: "How is your React studying?"},
+                {id: 3, message: "Btw, I'm going to France soon. Getting ready for the departure"},
+                {id: 4, message: "Chiao"}
+            ],
+            dialogs: [
+                {id: 1, name: "Valery"},
+                {id: 2, name: "Johny"},
+                {id: 3, name: "Mommy"},
+                {id: 4, name: "Josephine"}
+            ],
+        },
+        sidebar: {
+            bestFriends: [
+                {id: 1, message: "Andrew"},
+                {id: 2, message: "Mom"},
+                {id: 3, message: "Tanya"},
+            ]
+        }
+    },
+    getState() {
+        return this._state;
+    },
+    _onChange() {
+        console.log("state has been changed");
+    },
+    subscribe(observer) {
+        this._onChange = observer;
+    },
+    addPost() {
+        const newPost: PostType = {
+            id: new Date().getTime(),
+            message: this._state.profilePage.messageForNewPost,
+            likesCount: 0
+        };
+        this._state.profilePage.posts.push(newPost);
+        this._state.profilePage.messageForNewPost = "";
+        this._onChange();
+    },
+    updateNewPostText(postText: string) {
+        this._state.profilePage.messageForNewPost = postText;
+        this._onChange();
+    },
+    changeNewText(newText: string) {
+        this._state.profilePage.messageForNewPost = newText;
+        this._onChange();
+    },
+    addMessage() {
+        const newMessage: MessageType = {
+            id: new Date().getTime(),
+            message: this._state.dialogsPage.messageForNewDialog,
+        };
+        this._state.dialogsPage.messages.push(newMessage);
+        this._state.dialogsPage.messageForNewDialog = "";
+        this._onChange();
+    },
+    updateNewMessageText (messageText: string) {
+        this._state.dialogsPage.messageForNewDialog = messageText;
+        this._onChange();
+    },
+    changeNewMessage(newMessage: string) {
+        this._state.dialogsPage.messageForNewDialog = newMessage;
+        this._onChange();
+    }
+}
 export type MessageType = {
     id: number
     message: string
@@ -33,79 +123,7 @@ export type RouteStateType = {
     dialogsPage: DialogPage
     sidebar: SidebarType
 }
-let state: RouteStateType = {
-    profilePage: {
-        messageForNewPost: "",
-        posts: [
-            {id: 1, message: "What's up, man?", likesCount: 12},
-            {id: 2, message: "This is ma first post here", likesCount: 6},
-        ]
-    },
-    dialogsPage: {
-        messageForNewDialog: "",
-        messages: [
-            {id: 1, message: "Hi, lady"},
-            {id: 2, message: "How is your React studying?"},
-            {id: 3, message: "Btw, I'm going to France soon. Getting ready for the departure"},
-            {id: 4, message: "Chiao"}
-        ],
-        dialogs: [
-            {id: 1, name: "Valery"},
-            {id: 2, name: "Johny"},
-            {id: 3, name: "Mommy"},
-            {id: 4, name: "Josephine"}
-        ],
-    },
-    sidebar: {
-        bestFriends: [
-            {id: 1, message: "Andrew"},
-            {id: 2, message: "Mom"},
-            {id: 3, message: "Tanya"},
-        ]
-    }
-}
 
-let renderEntireTree = () => {
-    console.log("state has been changed");
-}
-export const addPost = () => {
-    const newPost: PostType = {
-        id: new Date().getTime(),
-        message: state.profilePage.messageForNewPost,
-        likesCount: 0
-    };
-    state.profilePage.posts.push(newPost);
-    state.profilePage.messageForNewPost = "";
-    renderEntireTree();
-}
 
-export const updateNewPostText = (postText: string) => {
-    state.profilePage.messageForNewPost = postText;
-    renderEntireTree();
-}
-export const changeNewText = (newText: string) => {
-    state.profilePage.messageForNewPost = newText;
-    renderEntireTree();
-}
-export const addMessage = () => {
-    const newMessage: MessageType = {
-        id: new Date().getTime(),
-        message: state.dialogsPage.messageForNewDialog,
-    };
-    state.dialogsPage.messages.push(newMessage);
-    state.dialogsPage.messageForNewDialog = "";
-    renderEntireTree();
-};
-export const updateNewMessageText = (messageText: string) =>{
-    state.dialogsPage.messageForNewDialog = messageText;
-    renderEntireTree();
-}
-export const changeNewMessage = (newMessage: string) => {
-    state.dialogsPage.messageForNewDialog = newMessage;
-    renderEntireTree();
-}
+export default store;
 
-export const subscribe = (observer: any) => {
-    renderEntireTree = observer;
-}
-export default state;

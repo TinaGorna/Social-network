@@ -5,16 +5,14 @@ import Navbar from "./components/Navbar/Navbar";
 import Profile from "./components/Profile/Profile";
 import Dialogs from "./components/Dialogs/Dialogs";
 import {BrowserRouter, Route} from "react-router-dom"
-import state, {
-    addMessage,
-    addPost,
-    updateNewMessageText,
-    updateNewPostText
-} from "./redux/state";
+import {StoreType} from "./redux/state";
 
-type AppPropsType = {}
+type AppPropsType = {
+    store: StoreType
+}
 
 const App: React.FC<AppPropsType> = (props) => {
+    const state = props.store.getState()
     return (
         <BrowserRouter>
             <div className="app-wrapper">
@@ -24,16 +22,16 @@ const App: React.FC<AppPropsType> = (props) => {
                     <Route path='/dialogs'
                            render={() => <Dialogs
                                messages={state.dialogsPage.messages}
-                               addMessage = {addMessage}
+                               addMessage = {props.store.addMessage.bind(props.store)}
                                messageForNewDialog = {state.dialogsPage.messageForNewDialog}
-                               updateNewMessageText= {updateNewMessageText}
+                               updateNewMessageText= {props.store.updateNewMessageText.bind(props.store)}
                                />}/>
                     <Route path='/profile'
                            render={() => <Profile
                                posts = {state.profilePage.posts}
-                               addPost={addPost}
+                               addPost={props.store.addPost.bind(props.store)}
                                messageForNewPost={state.profilePage.messageForNewPost}
-                               updateNewPostText={updateNewPostText}
+                               updateNewPostText={props.store.updateNewPostText.bind(props.store)}
                            />}/>
                 </div>
             </div>
