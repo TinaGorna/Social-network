@@ -13,7 +13,6 @@ export type MessagesType = {
 export const Message: React.FC<MessagesType> = (props) => {
     let dialogElement =
         props.message.map(d => <DialogItem name={d.message} id={d.id}/>)
-    /*   let messagesElement = props.messages.map(m => <Message message={m.message}/>)*/
 
     const addMessage = () => {
         props.addMessage();

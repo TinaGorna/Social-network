@@ -8,7 +8,7 @@ import React from "react";
 const renderEntireTree =() => {
     ReactDOM.render(
         <BrowserRouter>
-            <App store={store}  />,
+            <App store={store} />,
         </BrowserRouter>, document.getElementById("root"));
 }
 renderEntireTree ()

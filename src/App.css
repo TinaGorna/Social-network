@@ -8,9 +8,6 @@
     grid-template-areas:
 "h h "
 "n c";
-
-
-    /*grid-gap: 10px; */
 }
 
 .img {
@@ -20,6 +17,6 @@
 
 .app-wrapper-content {
   grid-area: c;
-  background-color: rgb(172, 172, 172);
+  background-color: rgb(226, 226, 226);
 
 }

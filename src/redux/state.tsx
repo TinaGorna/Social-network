@@ -1,15 +1,21 @@
 export type StoreType = {
     _state: RouteStateType
-    changeNewText: (newText: string) => void
-    addPost: () => void
     _onChange: () => void
     subscribe: (observer: () => void) => void
     getState: () => RouteStateType
-    updateNewPostText: (postText: string) => void
     addMessage: () => void
     updateNewMessageText: (messageText: string) => void
-    changeNewMessage: (newMessage: string) => void
+    dispatch: (action: ActionsTypes) => void
 }
+type AddPostActionType = {
+    type: "ADD-POST"
+    messageForNewPost: string
+}
+type UpdateNewPostTextActionType = {
+    type: "UPDATE-NEW-POST-TEXT"
+    postText: string
+}
+export type ActionsTypes =AddPostActionType | UpdateNewPostTextActionType
 
 const store: StoreType = {
     _state: {
@@ -52,24 +58,6 @@ const store: StoreType = {
     subscribe(observer) {
         this._onChange = observer;
     },
-    addPost() {
-        const newPost: PostType = {
-            id: new Date().getTime(),
-            message: this._state.profilePage.messageForNewPost,
-            likesCount: 0
-        };
-        this._state.profilePage.posts.push(newPost);
-        this._state.profilePage.messageForNewPost = "";
-        this._onChange();
-    },
-    updateNewPostText(postText: string) {
-        this._state.profilePage.messageForNewPost = postText;
-        this._onChange();
-    },
-    changeNewText(newText: string) {
-        this._state.profilePage.messageForNewPost = newText;
-        this._onChange();
-    },
     addMessage() {
         const newMessage: MessageType = {
             id: new Date().getTime(),
@@ -79,15 +67,31 @@ const store: StoreType = {
         this._state.dialogsPage.messageForNewDialog = "";
         this._onChange();
     },
-    updateNewMessageText (messageText: string) {
+    updateNewMessageText(messageText: string) {
         this._state.dialogsPage.messageForNewDialog = messageText;
         this._onChange();
     },
-    changeNewMessage(newMessage: string) {
-        this._state.dialogsPage.messageForNewDialog = newMessage;
-        this._onChange();
+    dispatch(action) {
+            /*switch (action.type) {
+                case 'ADD-POST': this._addPost(); break;
+                case 'UPDATE-NEW-POST-TEXT': this._updateNewPostText(action.newPostText); break;
+            }*/
+        if (action.type === "ADD-POST") {
+            const newPost: PostType = {
+                id: new Date().getTime(),
+                message: action.messageForNewPost,
+                likesCount: 0
+            };
+            this._state.profilePage.posts.push(newPost);
+            this._state.profilePage.messageForNewPost = "";
+            this._onChange();
+        } else if (action.type === "UPDATE-NEW-POST-TEXT") {
+            this._state.profilePage.messageForNewPost = action.postText;
+            this._onChange();
+        }
+        }
     }
-}
+
 export type MessageType = {
     id: number
     message: string
