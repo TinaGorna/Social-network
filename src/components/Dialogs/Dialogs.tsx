@@ -1,26 +1,21 @@
 import React from "react";
 import s from "./Dialogs.module.css"
-import {MessageType} from "../../redux/state";
+import store, {ActionsTypes, MessageType} from "../../redux/state";
 import Message from "./Message/Message";
 
 type DialogsPropsType = {
-    addMessage: () => void
     messages: MessageType[]
     messageForNewDialog: string
+    dispatch: (action: ActionsTypes) => void
     updateNewMessageText: (newMessage: string) => void
 }
 
 const Dialogs: React.FC<DialogsPropsType> = (props) => {
-
-    function addMessage() {
-        props.addMessage();
-    }
-
     return <div className={s.dialogs}>
-        <Message addMessage={addMessage}
+        <Message dispatch={store.dispatch.bind(store)}
                  messageForNewDialog={props.messageForNewDialog}
-                 updateNewMessageText={props.updateNewMessageText}
                  message={props.messages}
+                 updateNewMessageText={props.updateNewMessageText}
         />
     </div>
 }

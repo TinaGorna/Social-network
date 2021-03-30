@@ -1,13 +1,14 @@
 import React, {ChangeEvent} from "react";
 import s from "./../Dialogs.module.css"
-import {MessageType} from "../../../redux/state";
+import {ActionsTypes, addMessageAC, MessageType} from "../../../redux/state";
 import DialogItem from "../DialogItem/DialogItem";
 
 export type MessagesType = {
     messageForNewDialog: string,
     updateNewMessageText: (newMessage: string) => void
-    addMessage: () => void,
-    message: MessageType[]
+    /*addMessage: () => void,*/
+    message: MessageType[],
+    dispatch: (action: ActionsTypes) => void
 }
 
 export const Message: React.FC<MessagesType> = (props) => {
@@ -15,7 +16,7 @@ export const Message: React.FC<MessagesType> = (props) => {
         props.message.map(d => <DialogItem name={d.message} id={d.id}/>)
 
     const addMessage = () => {
-        props.addMessage();
+        props.dispatch(addMessageAC(props.messageForNewDialog))
     }
     const newMessageChangeHandler = (event: ChangeEvent<HTMLTextAreaElement>) => {
         props.updateNewMessageText(event.currentTarget.value)

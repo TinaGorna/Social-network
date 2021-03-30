@@ -7,6 +7,7 @@ type ProfilePropsType = {
     posts: PostType[]
     messageForNewPost: string
     dispatch: (action: ActionsTypes) => void
+    updateNewPostText: (newText: string) => void
 }
 const Profile: React.FC<ProfilePropsType> = (props) => {
     return <div>
@@ -14,7 +15,9 @@ const Profile: React.FC<ProfilePropsType> = (props) => {
         <MyPosts posts={props.posts}
                  messageForNewPost={props.messageForNewPost}
                  dispatch={store.dispatch.bind(store)}
-        />
+                 updateNewPostText={props.updateNewPostText}
+
+         />
     </div>
 }
 
