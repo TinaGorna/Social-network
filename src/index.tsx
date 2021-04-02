@@ -1,14 +1,13 @@
-import store from "./redux/state";
+import store from "./outside/store";
 import ReactDOM from "react-dom";
 import {BrowserRouter} from "react-router-dom";
 import App from "./App";
 import React from "react";
 
-// как зафиксить
 const renderEntireTree =() => {
     ReactDOM.render(
         <BrowserRouter>
-            <App store={store} />,
+            <App store={store} />
         </BrowserRouter>, document.getElementById("root"));
 }
 renderEntireTree ()

@@ -1,19 +1,19 @@
 import React, {ChangeEvent} from "react";
 import s from "./../Dialogs.module.css"
-import {ActionsTypes, addMessageAC, MessageType} from "../../../redux/state";
+import {ActionsTypes, MessageType} from "../../../outside/store";
 import DialogItem from "../DialogItem/DialogItem";
+import {addMessageAC} from "../../../outside/dialogs-reducer";
 
 export type MessagesType = {
     messageForNewDialog: string,
     updateNewMessageText: (newMessage: string) => void
-    /*addMessage: () => void,*/
     message: MessageType[],
     dispatch: (action: ActionsTypes) => void
 }
 
 export const Message: React.FC<MessagesType> = (props) => {
     let dialogElement =
-        props.message.map(d => <DialogItem name={d.message} id={d.id}/>)
+        props.message.map(d => <DialogItem key={d.id} name={d.message} id={d.id}/>)
 
     const addMessage = () => {
         props.dispatch(addMessageAC(props.messageForNewDialog))
@@ -27,7 +27,7 @@ export const Message: React.FC<MessagesType> = (props) => {
             <textarea value={props.messageForNewDialog} onChange={newMessageChangeHandler}/>
         </div>
         <div>
-            <button onClick={addMessage}>New message</button>
+            <button onClick={addMessage}>Send</button>
             {dialogElement}
         </div>
     </div>
