@@ -10,8 +10,11 @@ const renderEntireTree =() => {
             <App store={store} />
         </BrowserRouter>, document.getElementById("root"));
 }
-renderEntireTree ()
-store.subscribe(renderEntireTree)
+renderEntireTree()
+store.subscribe( () => {
+    let state = store.getState();
+    renderEntireTree();           //нужен ли рефакторинг????
+})
 
 
 // If you want to start measuring performance in your app, pass a function
