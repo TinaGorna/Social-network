@@ -28,13 +28,21 @@ const profileReducer = (state: ProfilePageType = initialState, action: ActionsTy
                 message: action.messageForNewPost,
                 likesCount: 0
             };
-            state.posts.push(newPost);
-            state.messageForNewPost = "";
-            break;
+            return {
+                ...state,
+                posts: [
+                    ...state.posts,
+                    newPost
+                ],
+                messageForNewPost: ""
+            }
         case "UPDATE-NEW-POST-TEXT":
-            state.messageForNewPost = action.postText;
-            break;
+            return {
+                ...state,
+                messageForNewPost: action.postText
+            };
+        default:
+            return state
     }
-    return state;
 }
 export default profileReducer;

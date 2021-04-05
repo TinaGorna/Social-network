@@ -1,21 +1,22 @@
 import React, {ChangeEvent} from 'react';
 import s from './MyPosts.module.css';
 import Post from './NewOne/Post';
-import {ActionsTypes, PostType} from "../../../outside/store";
-import {addPostActionCreator} from "../../../outside/profile-reducer";
+import {PostType} from "../../../outside/store";
+
 
 export type PostsPropsType = {
     posts: PostType[],
     messageForNewPost: string
-    dispatch: (action: ActionsTypes) => void
     updateNewPostText: (newText: string) => void
+    addPost: () => void
 }
 const MyPosts: React.FC<PostsPropsType> = (props) => {
     let postsElements =
         props.posts.map(p => <Post key={p.id} message={p.message} likesCount={p.likesCount}/>);
 
-    const addPost = () => {
-        props.dispatch(addPostActionCreator(props.messageForNewPost))
+    const onAddPost = () => {
+        props.addPost();
+        /*props.dispatch(addPostActionCreator(props.messageForNewPost))*/
     }
     const newPostChangeHandler = (event: ChangeEvent<HTMLTextAreaElement>) => {
         props.updateNewPostText(event.currentTarget.value)
@@ -28,7 +29,7 @@ const MyPosts: React.FC<PostsPropsType> = (props) => {
                 <textarea value={props.messageForNewPost} onChange={newPostChangeHandler}/>
             </div>
             <div>
-                <button onClick={addPost}>Add post</button>
+                <button onClick={onAddPost}>Add post</button>
             </div>
         </div>
         <div className={s.post}>
