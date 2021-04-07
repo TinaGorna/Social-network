@@ -3,16 +3,15 @@ import "./App.css";
 import Header from "./components/Header/Header";
 import Navbar from "./components/Navbar/Navbar";
 import {BrowserRouter, Route} from "react-router-dom"
-import {StoreType} from "./outside/redux-store";
 import DialogsContainer from "./components/Dialogs/Message/DialogsContainer";
-import MyPostsContainer from "./components/Profile/MyPosts/NewOne/MyPostsContainer";
+import Profile from "./components/Profile/Profile";
 
 
 type AppPropsType = {
-    store: StoreType
+    // store: StoreType
 }
 
-const App: React.FC<AppPropsType> = (props) => {
+const App: React.FC<AppPropsType> = () => {
     return (
         <BrowserRouter>
             <div className="app-wrapper">
@@ -20,14 +19,10 @@ const App: React.FC<AppPropsType> = (props) => {
                 <Route component={Navbar}/>
                 <div className="app-wrapper-content">
                     <Route path='/dialogs'
-                           render={() => <DialogsContainer
-                               store={props.store}
-                           />}/>
+                           render={() => <DialogsContainer/>}/>
 
                     <Route path='/profile'
-                           render={() => <MyPostsContainer
-                               store={props.store}
-                           />}/>
+                           render={() => <Profile/>}/>
                 </div>
             </div>
         </BrowserRouter>
