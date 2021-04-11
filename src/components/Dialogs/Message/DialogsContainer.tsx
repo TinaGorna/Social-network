@@ -3,14 +3,19 @@ import dialogsReducer, {addMessageAC, updateNewMessageTextAC} from "../../../out
 import Dialogs from "../Dialogs";
 import {connect} from "react-redux";
 import {ActionCreator} from "redux";
+import {StoreType} from "../../../outside/redux-store";
 
+export type mapStateToPropsType = {
+    dialogsPage: StoreType
+    messageForNewDialog: string
+}
 
-const mapStateToProps = (state) => {
+const mapStateToProps = (state: mapStateToPropsType) => {
     return {
         dialogsPage: state.dialogsPage
     }
 }
-const mapDispatchToProps = (dispatch: ActionCreator<typeof dialogsReducer>) => {
+const mapDispatchToProps = (dispatch: ActionCreator<typeof dialogsReducer>, state: mapStateToPropsType) => {
     return {
         addMessage: () => {
             dispatch(addMessageAC(state.messageForNewDialog))
