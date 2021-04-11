@@ -11,5 +11,4 @@ const Message: React.FC<PropsType> = (props) => {
     )
 }
 
-
-export default Message
+export default Message;

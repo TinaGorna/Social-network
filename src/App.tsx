@@ -7,9 +7,7 @@ import DialogsContainer from "./components/Dialogs/Message/DialogsContainer";
 import Profile from "./components/Profile/Profile";
 
 
-type AppPropsType = {
-    // store: StoreType
-}
+type AppPropsType = {}
 
 const App: React.FC<AppPropsType> = () => {
     return (

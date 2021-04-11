@@ -3,22 +3,14 @@ import ReactDOM from "react-dom";
 import {BrowserRouter} from "react-router-dom";
 import App from "./App";
 import React from "react";
-import {Provider} from "./StoreContext";
+import {Provider} from "react-redux";
 
-
-const renderEntireTree =() => {
-    ReactDOM.render(
-        <BrowserRouter>
-            <Provider store={store}>
+ReactDOM.render(
+    <BrowserRouter>
+        <Provider store={store}>
             <App/>
-            </Provider>
-        </BrowserRouter>, document.getElementById("root"));
-}
-renderEntireTree()
-store.subscribe( () => {
-    /*let state = store.getState();*/
-    renderEntireTree();
-})
+        </Provider>
+    </BrowserRouter>, document.getElementById("root"));
 
 
 // If you want to start measuring performance in your app, pass a function

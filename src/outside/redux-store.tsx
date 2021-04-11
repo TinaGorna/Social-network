@@ -16,8 +16,10 @@ let reducers = combineReducers({
     sidebar: sidebarReducer
 })
 
-type RouteStateType = ReturnType<typeof reducers>
+export type RouteStateType = ReturnType<typeof reducers>
 
 export let store = createStore(reducers);
+
+window.store = store; //todo почему ошибка?
 
 export default store;
