@@ -9,7 +9,8 @@ import Profile from "./components/Profile/Profile";
 
 type AppPropsType = {}
 
-const App: React.FC<AppPropsType> = () => {
+
+const App: React.FC<AppPropsType> = (props) => {
     return (
         <BrowserRouter>
             <div className="app-wrapper">
@@ -17,8 +18,7 @@ const App: React.FC<AppPropsType> = () => {
                 <Route component={Navbar}/>
                 <div className="app-wrapper-content">
                     <Route path='/dialogs'
-                           render={() => <DialogsContainer
-                           />}/>
+                           render={() => <DialogsContainer />}/>
 
                     <Route path='/profile'
                            render={() => <Profile/>}/>

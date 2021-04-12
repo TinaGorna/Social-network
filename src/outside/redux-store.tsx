@@ -19,7 +19,7 @@ let reducers = combineReducers({
 export type RouteStateType = ReturnType<typeof reducers>
 
 export let store = createStore(reducers);
-
-//window.store = store; //todo почему ошибка?
+//@ts-ignore
+window.store = store;
 
 export default store;

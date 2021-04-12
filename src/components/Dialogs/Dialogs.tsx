@@ -1,22 +1,24 @@
 import React from "react";
 import s from "./Dialogs.module.css"
-import {DialogPageType} from "../../outside/store";
+import {DialogType, MessageType} from "../../outside/store";
 import DialogItem from "./DialogItem/DialogItem";
 import Message from "./Message/Message";
 
 type DialogsPropsType = {
-    state: DialogPageType
+    dialogs: Array<DialogType>
+    messageForNewDialog: string
+    messages: Array<MessageType>
     addMessage: () => void
     updateNewMessageText: (newMessage: string) => void
 }
 
 const Dialogs: React.FC<DialogsPropsType> = (props) => {
-    const dialogItem = props.state.dialogs.map(d => <DialogItem name={d.name} id={d.id}/>)
-    const message = props.state.messages.map(m => <Message message={m.message}/>)
+    const dialogItem = props.dialogs.map(d => <DialogItem name={d.name} id={d.id}/>)
+    const message = props.messages.map(m => <Message message={m.message}/>)
 
 
     const addMessage = () => {
-        props.addMessage()
+        props.addMessage();
     }
 
     const onChangeMessage = (e: React.ChangeEvent<HTMLTextAreaElement>) => {
@@ -36,7 +38,7 @@ const Dialogs: React.FC<DialogsPropsType> = (props) => {
                 <div>
                     <div>
                         <textarea onChange={onChangeMessage}
-                                  value={props.state.messageForNewDialog}/>
+                                  value={props.messageForNewDialog}/>
                     </div>
                     <div>
                         <button onClick={addMessage}>Add message</button>

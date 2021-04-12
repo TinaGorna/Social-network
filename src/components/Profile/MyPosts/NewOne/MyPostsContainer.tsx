@@ -1,22 +1,29 @@
 import React from "react";
-import {addPostActionCreator, updateNewPostTextActionCreator} from "../../../../outside/profile-reducer";
+import profileReducer, {addPostActionCreator, updateNewPostTextActionCreator} from "../../../../outside/profile-reducer";
 import MyPosts from "../MyPosts";
 import {connect} from "react-redux";
+import {ActionCreator} from "redux";
+import {RouteStateType} from "../../../../outside/redux-store";
+import {PostType} from "../../../../outside/store";
 
-export type PostsPropsType = {}
+export type mapStateToPropsType = {
+    posts: PostType[]
+    messageForNewPost: string
 
-const mapStateToProps = (state) => {
+}
+
+const mapStateToProps = (state: RouteStateType): mapStateToPropsType => {
     return {
         posts: state.profilePage.posts,
         messageForNewPost: state.profilePage.messageForNewPost
     }
 }
-const mapDispatchToProps = (dispatch) => {
+const mapDispatchToProps = (dispatch: ActionCreator<typeof profileReducer>) => {
     return {
         addPost: () => {
-            dispatch(addPostActionCreator(state.profilePage.messageForNewPost))  //что - то должно быть в скобках?
+            dispatch(addPostActionCreator())
         },
-        messageForNewPost: (text: string) => {
+        updateNewPostText: (text: string) => {
             dispatch(updateNewPostTextActionCreator(text))
         }
     }

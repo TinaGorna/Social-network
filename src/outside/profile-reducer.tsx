@@ -1,9 +1,8 @@
 import {ActionsTypes, PostType, ProfilePageType} from "./store";
 
-export const addPostActionCreator = (messageForNewPost: string) => {
+export const addPostActionCreator = () => {
     return {
         type: "ADD-POST",
-        messageForNewPost: messageForNewPost
     } as const
 }
 export const updateNewPostTextActionCreator = (messageForNewPost: string) => {
@@ -25,7 +24,7 @@ const profileReducer = (state: ProfilePageType = initialState, action: ActionsTy
         case "ADD-POST":
             const newPost: PostType = {
                 id: new Date().getTime(),
-                message: action.messageForNewPost,
+                message: state.messageForNewPost,
                 likesCount: 0
             };
             return {

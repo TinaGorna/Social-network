@@ -7,7 +7,7 @@ type ProfilePropsType = {}
 const Profile: React.FC<ProfilePropsType> = () => {
     return <div>
         <ProfileInfo/>
-        <PostsContainer/>  //todo почему ошибка?
+        <PostsContainer/>
     </div>
 }
 

@@ -1,6 +1,6 @@
-import React, {ChangeEvent} from 'react';
-import s from './MyPosts.module.css';
-import Post from './NewOne/Post';
+import React, {ChangeEvent} from "react";
+import s from "./MyPosts.module.css";
+import Post from "./NewOne/Post";
 import {PostType} from "../../../outside/store";
 
 
@@ -16,7 +16,6 @@ const MyPosts: React.FC<PostsPropsType> = (props) => {
 
     const onAddPost = () => {
         props.addPost();
-        /*props.dispatch(addPostActionCreator(props.messageForNewPost))*/
     }
     const newPostChangeHandler = (event: ChangeEvent<HTMLTextAreaElement>) => {
         props.updateNewPostText(event.currentTarget.value)

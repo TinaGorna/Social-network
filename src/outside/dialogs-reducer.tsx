@@ -1,9 +1,8 @@
 import {ActionsTypes, DialogPageType, MessageType} from "./store";
 
-export const addMessageAC = (messageForNewDialog: string) => {
+export const addMessageAC = () => {
     return {
         type: "ADD-MESSAGE",
-        messageForNewDialog: messageForNewDialog
     } as const
 }
 export const updateNewMessageTextAC = (messageForNewDialog: string) => {
@@ -33,7 +32,7 @@ const dialogsReducer = (state: DialogPageType = initialState, action: ActionsTyp
         case "ADD-MESSAGE":
             const newMessage: MessageType = {
                 id: new Date().getTime(),
-                message: action.messageForNewDialog,
+                message: state.messageForNewDialog,
             };
             return {
                 ...state,
