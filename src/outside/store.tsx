@@ -56,7 +56,6 @@ export type ActionsTypes =
     ReturnType<typeof unfollowedAC> |
     ReturnType<typeof setUsersAC>
 
-
 const store: StoreType = {
     _state: {
         profilePage: {
