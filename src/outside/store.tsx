@@ -1,6 +1,7 @@
 import profileReducer, {addPostActionCreator, updateNewPostTextActionCreator} from "./profile-reducer";
 import dialogsReducer, {addMessageAC, updateNewMessageTextAC} from "./dialogs-reducer";
 import sidebarReducer from "./sidebar-reducer";
+import {followedAC, setUsersAC, unfollowedAC} from "./users-reducer";
 
 export type StoreType = {
     _state: RouteStateType
@@ -50,7 +51,11 @@ export type ActionsTypes =
     ReturnType<typeof addPostActionCreator> |
     ReturnType<typeof updateNewPostTextActionCreator> |
     ReturnType<typeof addMessageAC> |
-    ReturnType<typeof updateNewMessageTextAC>
+    ReturnType<typeof updateNewMessageTextAC> |
+    ReturnType<typeof followedAC> |
+    ReturnType<typeof unfollowedAC> |
+    ReturnType<typeof setUsersAC>
+
 
 const store: StoreType = {
     _state: {

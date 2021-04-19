@@ -2,23 +2,18 @@ import {combineReducers, createStore} from "redux";
 import profileReducer from "./profile-reducer";
 import dialogsReducer from "./dialogs-reducer";
 import sidebarReducer from "./sidebar-reducer";
-import {ActionsTypes} from "./store";
+import usersReducer from "./users-reducer";
 
-export type StoreType = {
-    subscribe: (observer: () => void) => void
-    getState: () => RouteStateType
-    dispatch: (action: ActionsTypes) => void
-}
-
-let reducers = combineReducers({
+const rootReducer = combineReducers({
     profilePage: profileReducer,
     dialogsPage: dialogsReducer,
-    sidebar: sidebarReducer
+    sidebar: sidebarReducer,
+    users: usersReducer
 })
 
-export type RouteStateType = ReturnType<typeof reducers>
+export type RouteStateType = ReturnType<typeof rootReducer>
 
-export let store = createStore(reducers);
+export const store = createStore(rootReducer);
 //@ts-ignore
 window.store = store;
 
