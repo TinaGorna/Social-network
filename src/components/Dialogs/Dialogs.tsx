@@ -1,54 +1,40 @@
-import React from "react";
-import s from "./Dialogs.module.css"
-import {DialogType, MessageType} from "../../outside/store";
-import DialogItem from "./DialogItem/DialogItem";
-import Message from "./Message/Message";
+import React from 'react';
+import DialogItem from './DialogItem/DialogItem';
+import Message from './Message/Message';
+import styles from './Dialogs.module.css';
+import AddMessageReduxForm from './AddMessageForm/AddMessageForm';
+import {DialogsPagePropsType} from "../../outside/dialogs-reducer";
 
 type DialogsPropsType = {
-    dialogs: Array<DialogType>
-    messageForNewDialog: string
-    messages: Array<MessageType>
-    addMessage: () => void
-    updateNewMessageText: (newMessage: string) => void
+    dialogsPage: DialogsPagePropsType
+    sendMessage: (newMessageBody: string) => void
 }
 
-const Dialogs: React.FC<DialogsPropsType> = (props) => {
-    const dialogItem = props.dialogs.map(d => <DialogItem name={d.name} id={d.id}/>)
-    const message = props.messages.map(m => <Message message={m.message}/>)
+export type AddMessagePropsType = {
+    newMessageBody: string
+}
 
+const Dialogs = (props: DialogsPropsType) => {
 
-    const addMessage = () => {
-        props.addMessage();
+    const dialogsElements = props.dialogsPage.dialogs.map(d => <DialogItem key={d.id} id={d.id} name={d.name} avatar={d.avatar} />)
+
+    const messagesElements = props.dialogsPage.messages.map(m => <Message key={m.id} id={m.id} message={m.message} time={m.time} />)
+
+    const addNewMessage = (values: AddMessagePropsType) => {
+        props.sendMessage(values.newMessageBody)
     }
-
-    const onChangeMessage = (e: React.ChangeEvent<HTMLTextAreaElement>) => {
-        const newMessage = e.currentTarget.value
-        props.updateNewMessageText(newMessage)
-    }
-    // if(!props.isAuth) return <Redirect to={'/login'}/>
 
     return (
-        <div className={s.dialogs}>
-            <div className={s.dialogsItem}>
-                {dialogItem}
+        <div className={styles.dialogsWrapper}>
+            <div className={styles.dialogsItems}>
+                {dialogsElements}
             </div>
-
-            <div className={s.messages}>
-                {message}
-                <div>
-                    <div>
-                        <textarea onChange={onChangeMessage}
-                                  value={props.messageForNewDialog}/>
-                    </div>
-                    <div>
-                        <button onClick={addMessage}>Add message</button>
-                    </div>
-                </div>
+            <div className={styles.messages}>
+                {messagesElements}
             </div>
+            <AddMessageReduxForm onSubmit={addNewMessage} />
         </div>
-
     )
 }
 
-
-export default Dialogs;
+export default Dialogs

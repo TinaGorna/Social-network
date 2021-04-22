@@ -1,19 +1,17 @@
-import React from "react";
-import s from './../Dialogs.module.css';
-import {NavLink} from "react-router-dom";
+import React from 'react';
+import { NavLink } from 'react-router-dom';
+import styles from './DialogItem.module.css';
+import {DialogType} from "../../../outside/dialogs-reducer";
 
-type PropsType = {
-    name: string
-    id:number
+const DialogItem = (props: DialogType) => {
+    let path = '/dialog/' + props.id
+
+    return (
+        <div className={styles.dialog}>
+            <img src={props.avatar} alt='dialog' />
+            <div className={styles.dialogName}><NavLink to={path}>{props.name}</NavLink></div>
+        </div>
+    )
 }
-
-const DialogItem = (props: PropsType) => {
-    let path = '/dialogs' + props.id;
-    return <div className={s.dialog + ' ' + s.active}>
-        <NavLink to={path}>{props.name}</NavLink>
-    </div>
-
-}
-
 
 export default DialogItem;

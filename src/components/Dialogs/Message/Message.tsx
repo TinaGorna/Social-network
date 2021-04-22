@@ -1,14 +1,16 @@
-import React from "react";
-import s from "./../Dialogs.module.css"
+import React from 'react';
+import styles from './Message.module.css';
+import {MessageType} from "../../../outside/dialogs-reducer";
 
-type PropsType = {
-    message: string
-}
-
-const Message: React.FC<PropsType> = (props) => {
+const Message = (props: MessageType) => {
     return (
-        <div className={s.message}>{props.message}</div>
+        <div className={(props.message === 'Are you packing the bag?') ? styles.message : styles.myMessage}>
+            {props.message}
+            <div className={styles.messageTime}>
+                {props.time}
+            </div>
+        </div>
     )
 }
 
-export default Message;
+export default Message

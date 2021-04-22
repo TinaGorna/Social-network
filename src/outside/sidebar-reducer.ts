@@ -1,5 +1,4 @@
-import {ActionsTypes, SidebarType} from "./store";
-
+/*
 let initialState = {
     bestFriends: [
         {id: 1, message: "Andrew"},
@@ -10,4 +9,4 @@ let initialState = {
 const sidebarReducer = (state: SidebarType = initialState, action: ActionsTypes) => {
 return state;
 }
-export default sidebarReducer;
+export default sidebarReducer;*/

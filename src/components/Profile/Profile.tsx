@@ -1,15 +1,25 @@
-import React from "react";
-import ProfileInfo from "./ProfileInfo/ProfileInfo";
-import PostsContainer from "./MyPosts/NewOne/MyPostsContainer";
+import React from 'react';
+import MyPostsContainer from './MyPosts/MyPostsContainer';
+import ProfileInfo from './ProfileInfo/ProfileInfo';
+import {ProfileType} from "../../outside/profile-reducer";
 
+export type ProfilePropsType = {
+    profile: ProfileType | null
+    status: string
+    updateUserStatus: (status: string) => void
+}
 
-type ProfilePropsType = {}
-const Profile: React.FC<ProfilePropsType> = () => {
-    return <div>
-        <ProfileInfo/>
-        <PostsContainer/>
-    </div>
+const Profile = (props: ProfilePropsType) => {
+
+    return (
+        <div>
+            <ProfileInfo
+                profile={props.profile}
+                status={props.status}
+                updateUserStatus={props.updateUserStatus} />
+            <MyPostsContainer />
+        </div>
+    )
 }
 
 export default Profile;
-
