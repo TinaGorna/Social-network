@@ -1,7 +1,113 @@
-.descriptionBlock {
-    padding: 10px;
+.profileInfoWrapper{
+    display: flex;
+    font-family: 'Monserrat';
+    font-size: 20px;
 }
-.backphoto {
-    width: 1200px;
-height: 450px;
+
+.profilephoto{
+    width: 310px;
+    height: 340px;
+    border-radius: 30px;
+/*    border: 2px solid #2d0950;*/
 }
+.profileInfoName{
+    text-transform: unset;
+    font-style: normal;
+    font-weight: bold;
+}
+.profileInfoDescription{
+    margin-left: 80px;
+    padding-block-start: 30px;
+    line-height: 2em;
+    color: #282c34;
+    text-decoration: #3b0b50;
+    font-style: normal;
+    font-family: 'Monserrat';
+}
+.myyogaclasses:hover{
+    opacity: 0.5;
+    filter: alpha(opacity=50);
+}
+.profileInfoName:hover{
+    opacity: 0.5;
+    filter: alpha(opacity=50);
+}
+.title:hover {
+    opacity: 0.5;
+    filter: alpha(opacity=50);
+}
+/*.userItemStatus{
+    width: 350px;
+    font-size: 17px;
+    margin: 10px 10px 10px 0;
+    color: rgba(199, 199, 199, 0.88);
+}*/
+/*.userItemStatus{
+    width: 350px;
+    font-size: 17px;
+    margin: 10px 10px 10px 0;
+    color: rgba(134, 18, 18, 0.88);
+}*/
+.status{
+    width: 290px;
+    font-size: 13px;
+    padding: 6px 0 4px 10px;
+    border: 1px solid #cecece;
+    background: #f6f6f6;
+    border-radius: 8px;
+}
+.status:focus {
+    outline: none;
+    border: 1px solid #a10000;
+    background: linear-gradient(to top, #fefcea, #858585);
+}
+
+
+
+/*.followBtn{
+    margin-right: 20px;
+    margin-top: 50px;
+}*/
+/*.myyogaclasses{
+
+}*/
+/*
+
+.userItemLocation{
+    font-size: 17px;
+    margin: 0 10px 10px 0;
+    color: rgba(199, 199, 199, 0.88);
+}
+
+.userItemStatus{
+    width: 350px;
+    font-size: 17px;
+    margin: 10px 10px 10px 0;
+    color: rgba(199, 199, 199, 0.88);
+}
+
+.followBtn{
+    margin-right: 20px;
+    margin-top: 50px;
+}
+
+.followBtn button {
+    width: 100px;
+    border-radius: 15px;
+    background-color: rgba(199, 199, 199, 0.88);
+    color: rgba(199, 199, 199, 0.88);
+    font-weight: bold;
+    font-size: 18px;
+    font-family: 'Monserrat';
+    outline: none;
+    text-align: center;
+}
+
+.page{
+    color: rgba(194, 194, 194, 0.82);
+}
+
+.selectedPage{
+    color: rgb(255, 254, 254);
+    font-weight: bold;
+}*/

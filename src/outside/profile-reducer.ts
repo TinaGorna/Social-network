@@ -100,10 +100,11 @@ export let initialState = {
         }
     },
     status: '',
-    // status: 'Staradaŭniaj Litoŭskaj Pahoni nia raźbić, nie spynić, nia strymać',
     posts: [
-        { id: v1(), message: 'You could come with me', time: '22:00', liked: true, likesCount: 12 },
-        { id: v1(), message: "In march we are going to London. Who is coming with us?", time: '22:06', liked: false, likesCount: 11 }
+        { id: v1(), message: 'Want to decorate the interior in purple shades? Not sure where to start?' +
+                'Where to get the cheapest wallpaper? How to save on furniture?', time: '22:00', liked: true, likesCount: 12 },
+        { id: v1(), message: 'Want to decorate the interior in purple shades? Not sure where to start?' +
+                'Where to get the cheapest wallpaper? How to save on furniture?', time: '23:00', liked: false, likesCount: 11 }
     ]
 }
 

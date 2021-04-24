@@ -1,7 +1,7 @@
 import { connect } from 'react-redux';
 import MyPosts from './MyPosts';
-import {AddPostActionCreator, likeAC, unlikeAC} from "../../../outside/profile-reducer";
 import {ActionsType, AppStateType} from "../../../outside/redux-store";
+import {AddPostActionCreator, likeAC, unlikeAC} from "../../../outside/profile-reducer";
 
 let mapStateToProps = (state: AppStateType) => {
     return {

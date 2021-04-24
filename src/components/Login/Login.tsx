@@ -2,11 +2,11 @@ import React from 'react';
 import { connect } from 'react-redux';
 import { Field, InjectedFormProps, reduxForm } from 'redux-form';
 import { Redirect } from 'react-router-dom';
-import styles from './../Common/FormsControls/FormControl.module.css'
+import styles from '../Common/FormsControls/FormControl.module.css'
+import {Input} from "../Common/FormsControls/FormControl";
+import {required} from "../../utils/validators/validatos";
 import {AppStateType} from "../../outside/redux-store";
 import {loginThunkCreator} from "../../outside/auth-reducer";
-import {Input} from "@material-ui/core";
-import {required} from "../../utils/validators/validatos";
 
 type FormDataType = {
     login: string

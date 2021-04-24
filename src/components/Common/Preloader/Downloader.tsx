@@ -1,5 +1,5 @@
 import React from "react";
-import Dowloader from "../../assets/images/Dowloader.svg";
+import Dowloader from "../../../assets/images/Dowloader.svg";
 
 const Downloader = () => {
     return <div>

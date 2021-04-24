@@ -28,19 +28,19 @@ const SEND_MESSAGE = 'SEND-MESSAGE'
 
 let initialState = {
     messages: [
-        { id: v1(), message: 'Morning!', time: '22:00' },
-        { id: v1(), message: 'Where are you planning to go next?', time: '12:42' },
-        { id: v1(), message: 'Yes, you that was an interesting place to visit)', time: '11:00' },
-        { id: v1(), message: 'Super', time: '12:00' },
-        { id: v1(), message: 'Is she is staying with you', time: '13:00' }
+        { id: v1(), message: 'When is the next yoga class, Li?', time: '22:00' },
+        { id: v1(), message: 'I came from India, oh it was amazing', time: '10:00' },
+        { id: v1(), message: 'Can\'t wait to see you. Brought so many thing for you', time: '11:00' },
+        { id: v1(), message: 'I can bring dinner tonight, what do you think?', time: '12:00' },
+        { id: v1(), message: 'Reunite you lol', time: '13:00' }
     ],
     dialogs: [
-        { id: v1(), name: 'Hanna', avatar: 'https://i.pinimg.com/originals/a4/04/71/a40471885a948612dcf92936141d98da.jpg' },
-        { id: v1(), name: 'Moyo', avatar: 'https://avatars.mds.yandex.net/get-kinopoisk-post-img/1539913/d9e7e7eee9a421b16fee678e8bbd92b9/960x540' },
-        { id: v1(), name: 'Di', avatar: 'https://avatarko.ru/img/kartinka/13/serial_Game_of_Thrones_Daenerys_12809.jpg' },
-        { id: v1(), name: 'Volodya', avatar: 'https://avatarko.ru/img/kartinka/33/serial_Game_of_Thrones_32744.jpg' },
-        { id: v1(), name: 'Lena', avatar: 'https://avatarko.ru/img/kartinka/6/serial_Game_of_Thrones_5983.jpg' },
-        { id: v1(), name: 'Gatsby', avatar: 'https://pm1.narvii.com/7377/ec4eea9404ef6004a52cadac44ed1dc33c28e16br1-600-800v2_uhq.jpg' }
+        { id: v1(), name: 'Josephine', avatar: 'https://i.pinimg.com/564x/ec/5f/db/ec5fdb748c2a55e55ecb141929a66f70.jpg' },
+        { id: v1(), name: 'Volodya', avatar: 'https://i.pinimg.com/564x/11/2f/b4/112fb4c77d01ad300593664cb13a4c55.jpg' },
+        { id: v1(), name: 'Di', avatar: 'https://i.pinimg.com/564x/66/e1/b5/66e1b5ef286f9da7f02c89b215ced4f6.jpg' },
+        { id: v1(), name: 'Andrew', avatar: 'https://i.pinimg.com/564x/a6/5b/13/a65b13ddf43905ed7847d0c44b98cf7c.jpg' },
+        { id: v1(), name: 'Lech', avatar: 'https://i.pinimg.com/564x/36/83/aa/3683aab2d8dbf3120069089db9e21e96.jpg' },
+        { id: v1(), name: 'Karol', avatar: 'https://i.pinimg.com/564x/d3/8d/27/d38d27c2e13ca66d1e448604f067a290.jpg' }
     ]
 }
 

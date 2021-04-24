@@ -1,6 +1,9 @@
 import React from 'react';
+
+
 import DialogItem from './DialogItem/DialogItem';
 import Message from './Message/Message';
+
 import styles from './Dialogs.module.css';
 import AddMessageReduxForm from './AddMessageForm/AddMessageForm';
 import {DialogsPagePropsType} from "../../outside/dialogs-reducer";
@@ -22,6 +25,7 @@ const Dialogs = (props: DialogsPropsType) => {
 
     const addNewMessage = (values: AddMessagePropsType) => {
         props.sendMessage(values.newMessageBody)
+        values.newMessageBody = " "
     }
 
     return (

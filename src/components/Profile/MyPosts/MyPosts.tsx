@@ -1,11 +1,10 @@
-import React from 'react';
-import Post from './Post/Post';
-import styles from './MyPosts.module.css';
-import { Field, InjectedFormProps, reduxForm } from 'redux-form';
-import {Textarea} from "../../common/Downloader/FormsControl/FormControl";
-import {maxLengthCreator, required} from "../../../utils/validators/validatos";
+import React from "react";
+import Post from "./Post/Post";
+import styles from "./MyPosts.module.css";
+import {Field, InjectedFormProps, reduxForm} from "redux-form";
 import {PostType} from "../../../outside/profile-reducer";
-
+import {maxLengthCreator, required} from "../../../utils/validators/validatos";
+import {Textarea} from "../../Common/FormsControls/FormControl";
 
 type MyPostsPropsType = {
     posts: Array<PostType>
@@ -28,20 +27,19 @@ const MyPosts = React.memo((props: MyPostsPropsType) => {
         liked={p.liked}
         likesCount={p.likesCount}
         like={props.like}
-        unlike={props.unlike} />).reverse()
+        unlike={props.unlike}/>).reverse()
 
-    // const newPostElement = React.createRef<HTMLTextAreaElement>();
     const onAddPost = (values: AddPostPropsType) => {
         props.addPost(values.newPostText)
+        values.newPostText = " "
     }
 
     return (
         <div className={styles.postsWrapper}>
-
             <div className={styles.postsTitle}>
-                Maje pasty
+                What's new?
             </div>
-            <AddNewPostReduxFrom onSubmit={onAddPost} />
+            <AddNewPostReduxFrom onSubmit={onAddPost}/>
             <div className={styles.posts}>
                 {postsElements}
             </div>
@@ -56,19 +54,19 @@ const AddNewPostFrom: React.FC<InjectedFormProps<AddPostPropsType>> = (props) =>
         <form className={styles.addPost} onSubmit={props.handleSubmit}>
             <div>
                 <Field
-                    name='newPostText'
+                    name="newPostText"
                     component={Textarea}
-                    placeholder='Enter your message'
-                    wrap='hard'
-                    validate={[required, maxLengthCreator500]} />
+                    placeholder="Add a note..."
+                    wrap="hard"
+                    validate={[required, maxLengthCreator500]}/>
             </div>
             <div className={styles.addPostBtn}>
-                <button>Dadać post</button>
+                <button>Add post</button>
             </div>
         </form>
     )
 }
 
-const AddNewPostReduxFrom = reduxForm<AddPostPropsType>({ form: 'profileAddNewPostFrom' })(AddNewPostFrom)
+const AddNewPostReduxFrom = reduxForm<AddPostPropsType>({form: "profileAddNewPostFrom"})(AddNewPostFrom)
 
 export default MyPosts;

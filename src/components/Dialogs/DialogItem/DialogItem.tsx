@@ -4,7 +4,7 @@ import styles from './DialogItem.module.css';
 import {DialogType} from "../../../outside/dialogs-reducer";
 
 const DialogItem = (props: DialogType) => {
-    let path = '/dialog/' + props.id
+    let path = '/paviedamliennia/' + props.id
 
     return (
         <div className={styles.dialog}>

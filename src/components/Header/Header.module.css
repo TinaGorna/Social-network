@@ -1,10 +1,70 @@
 .header {
     grid-area: h;
-    background-color: rgb(209, 205, 205);
-}
-.header img {
-    width: 60px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    background-color: #8a2be2;
+    border: 2px solid #8a2be2;
+    border-bottom-style: none;
 }
 .loginBlock {
-    float: right;
+    margin-right: 10px;
+    color: rgba(199, 199, 199, 0.88);
+    font-size: 17px;
+    text-decoration: none;
+    text-transform: uppercase;
+    font-weight: bold;
+    font-style: normal;
+    font-family: 'Monserrat';
 }
+.buttonLog{
+    cursor: pointer;
+    border: rgba(199, 199, 199, 0.88);
+    background: rgba(199, 199, 199, 0.88);
+    box-shadow: inset 0 40px 40px #ffffff;
+    border-radius: 8px;
+    padding: 8px 14px;
+    width: 90px;
+    font-family: 'Monserrat';
+}
+.buttonLog:disabled {
+}
+.buttonLog:focus {
+    outline:none;
+}
+.buttonLog:hover {
+    box-shadow: inset 0 -20px 20px #ffffff;
+}
+.buttonLog:active {
+    margin-top: 1px;
+    margin-bottom: -1px;
+    zoom: 1;
+}
+
+.logo {
+    display: flex;
+}
+.main {
+    font-family: 'Monserrat';
+    color: rgba(194, 194, 194, 0.82);
+    font-size: 25px;
+    font-style: unset;
+    padding-block-start: 25px;
+}
+
+.logo img{
+    width: 70px;
+    height: 70px;
+    margin: 7px;
+    border-radius: 10px;
+}
+
+.loginBlock a {
+    color: rgba(199, 199, 199, 0.88);
+    font-size: 20px;
+    text-decoration: none;
+    text-transform: uppercase;
+    font-weight: unset;
+    font-style: normal;
+}
+

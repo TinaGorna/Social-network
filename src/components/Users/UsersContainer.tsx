@@ -1,24 +1,29 @@
 import React from 'react';
 import { connect } from 'react-redux';
+
+
 import Users from './Users';
+
 import { compose } from 'redux';
-import {withAuthRedirect} from "../../hoc/AuthRedirect";
-import Downloader from "../common/Downloader";
-import {AppStateType} from "../../outside/redux-store";
+import { withAuthRedirect } from '../../hoc/WithAuthRedirect';
 import {
     followThunkCreator,
-    getUsersThunkCreator,
-    setCurrentPage, setTotalUsersCount, toggleIsFollowingProgress,
+    getUsersThunkCreator, setCurrentPage, setTotalUsersCount,
+    toggleIsFollowingProgress,
     unfollowThunkCreator,
     UserType
 } from "../../outside/users-reducer";
+import Downloader from "../Common/Preloader/Downloader";
+import {AppStateType} from "../../outside/redux-store";
 import {
     getCurrentPage,
     getFollowingInProgress,
     getIsFetching,
     getPageSize,
-    getTotalUsersCount, getUsers
+    getTotalUsersCount,
+    getUsers
 } from "../../outside/users-selector";
+
 
 
 
@@ -67,6 +72,18 @@ class UsersContainer extends React.Component<UsersContainerPropsType> {
     }
 }
 
+
+// let mapStateToProps = (state: AppStateType) => {
+//   return {
+//     users: state.usersPage.users,
+//     pageSize: state.usersPage.pageSize,
+//     totalUsersCount: state.usersPage.totalUsersCount,
+//     currentPage: state.usersPage.currentPage,
+//     isFetching: state.usersPage.isFetching,
+//     followingInProgress: state.usersPage.followingInProgress
+//   }
+// }
+
 let mapStateToProps = (state: AppStateType) => {
     console.log('mapStateToProps USERS')
     return {
@@ -78,6 +95,30 @@ let mapStateToProps = (state: AppStateType) => {
         followingInProgress: getFollowingInProgress(state)
     }
 }
+
+// let mapDispatchToProps = (dispatch: (action: ActionsType) => void) => {
+//   return {
+//     follow: (userID: number) => {
+//       dispatch(followAC(userID))
+//     },
+//     unfollow: (userID: number) => {
+//       dispatch(unfollowAC(userID))
+//     },
+//     setUsers: (users: Array<UserType>) => {
+//       dispatch(setUsersAC(users))
+//     },
+//     setCurrentPage: (currentPage: number) => {
+//       dispatch(setCurrentPageAC(currentPage))
+//     },
+//     setTotalUsersCount: (totalUsersCount: number) => {
+//       dispatch(setTotalUsersCountAC(totalUsersCount))
+//     },
+//     toggleIsFetching: (isFetching: boolean) => {
+//       dispatch(toggleIsFetchingAC(isFetching))
+//     }
+//   }
+// }
+
 
 export default compose<React.ComponentType>(
     withAuthRedirect,

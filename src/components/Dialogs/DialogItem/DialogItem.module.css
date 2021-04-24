@@ -1,0 +1,32 @@
+.dialog{
+    display: flex;
+    border: 2px solid rgba(0, 0, 0, 0.27);
+    width: 240px;
+    padding: 10px;
+    border-left-style: none;
+    border-right-style: none;
+    border-top-style: none;
+}
+
+.dialog:hover{
+    background-color: rgba(0, 0, 0, 0.27);
+}
+
+.dialogName{
+    margin: 18px;
+}
+
+.dialog a{
+    text-decoration: none;
+    color: #000000;
+    font-size: 18px;
+    font-family: 'Monserrat';
+}
+
+.dialog img {
+    width: 65px;
+    height: 60px;
+    border-radius: 50px;
+    background-color: rgba(0, 0, 0, 0.27);
+    border: 2px solid rgba(0, 0, 0, 0.27);
+}

@@ -1,9 +1,10 @@
 import React from 'react'
 import { Field, InjectedFormProps, reduxForm } from 'redux-form'
+
 import { AddMessagePropsType } from '../Dialogs'
 import styles from './AddMessageForm.module.css';
+import {Textarea} from "../../Common/FormsControls/FormControl";
 import {maxLengthCreator, required} from "../../../utils/validators/validatos";
-import {Textarea} from "../../common/Downloader/FormsControl/FormControl";
 
 
 const maxLengthCreator500 = maxLengthCreator(500)
@@ -20,7 +21,7 @@ const AddMessageForm: React.FC<InjectedFormProps<AddMessagePropsType>> = ({ hand
                     validate={[required, maxLengthCreator500]} />
             </div>
             <div className={styles.sendMessageBtn}>
-                <button>Adpravić</button>
+                <button>Send</button>
             </div>
         </form>
     )

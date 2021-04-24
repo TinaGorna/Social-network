@@ -15,20 +15,21 @@ const Post = (props: PostPropsType) => {
 
     return (
         <div className={styles.postItemWrapper}>
-            <img src='https://upload.wikimedia.org/wikipedia/ru/thumb/7/77/Richard_Madden_as_Robb_Stark.jpg/274px-Richard_Madden_as_Robb_Stark.jpg' alt='post' />
-
+            <img src='https://i.pinimg.com/564x/e8/42/55/e842551f1287148f65da67e35daf2a39.jpg' alt='post' />
             <div className={styles.postItem}>
                 {props.message}
-
                 <div className={styles.postLikeTimeWrapper}>
+                   {/* <div className={styles.iphone}>
+                    <img src='https://store.storeimages.cdn-apple.com/4982/as-images.apple.com/is/iphone-12-purple-select-2021?wid=940&hei=1112&fmt=png-alpha&qlt=80&.v=1617130317000'/>
+                    </div>*/}
                     <div className={styles.postLike}>
                         {
                             props.liked
                                 ? <button onClick={() => { props.unlike(props.id) }}>
-                                    <img src='https://upload.wikimedia.org/wikipedia/commons/thumb/8/86/A_perfect_SVG_heart.svg/342px-A_perfect_SVG_heart.svg.png' alt='like' style={{ width: '10px', height: '10px' }}/>
+                                    <img src='https://iconarchive.com/download/i102621/graphicloads/flat-finance/dislike.ico' alt='like' style={{ width: '20px', height: '20px' }} />
                                 </button>
                                 : <button onClick={() => props.like(props.id)}>
-                                    <img src='https://www.clipartmax.com/png/middle/32-325427_heart-icon-svg-heart-png-transparent-background.png' alt='unlike' style={{ width: '10px', height: '10px' }} />
+                                    <img src='https://cdn.worldvectorlogo.com/logos/facebook-like.svg' alt='dislike' style={{ width: '20px', height: '20px' }}/>
                                 </button>
                         }
                         <span>{props.likesCount}</span>

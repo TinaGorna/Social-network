@@ -9,11 +9,9 @@ import ProfileContainer from './components/Profile/ProfileContainer';
 import HeaderContainer from './components/Header/HeaderContainer';
 import Login from './components/Login/Login';
 import './App.css';
-import Downloader from "./components/common/Downloader";
+import Downloader from "./components/Common/Preloader/Downloader";
 import {AppStateType} from "./outside/redux-store";
 import {initializeThunkCreator} from "./outside/app-reducer";
-
-
 
 type MapStateToPropsPropsType = {
     initialized: boolean
@@ -47,6 +45,7 @@ class App extends React.Component<MapStateToPropsPropsType & MapDispatchToPropsT
                            render={() => <DialogsContainer />} />
                     <Route path='/users'
                            render={() => <UsersContainer />} />
+
                 </div>
             </div>
         );

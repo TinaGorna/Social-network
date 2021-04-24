@@ -1,24 +1,26 @@
-.dialogs {
+.dialogsWrapper {
     display: grid;
+    grid-template-areas:
+    "a b"
+    "a d";
     grid-template-columns: 2fr 10fr;
 }
 
-.dialogsItems {
-    padding: 10px;
-}
-.dialogsItems.active {
-    color: darkslategrey;
-}
-
-.dialog {
-
+.dialogsItems{
+    grid-area: a;
+    height: 89vh;
+    border: 2px solid rgba(0, 0, 0, 0.27);
+    border-bottom-style: none;
+    border-top-style: none;
+    border-left-style: none;
 }
 
 .messages {
-
-padding: 10px;
-}
-
-.message {
-
+    grid-area: b;
+    height: 74vh;
+    border: 2px solid rgba(0, 0, 0, 0.27);
+    border-right-style: none;
+    border-left-style: none;
+    border-top-style: none;
+    overflow: auto;
 }
