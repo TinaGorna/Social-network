@@ -49,7 +49,7 @@ export const profileAPI = {
     },
     updateStatus(status: string) {
         return instance
-            .put(`profile/status`, { status: status })
+            .put(`profile/status`, {status: status})
             .then(response => {
                 return response.data
             })
@@ -66,7 +66,7 @@ export const authAPI = {
     },
     login(email: string, password: string, rememberMe: boolean = false) {
         return instance
-            .post(`auth/login`, { email, password, rememberMe })
+            .post(`auth/login`, {email, password, rememberMe})
             .then(response => {
                 return response.data
             })

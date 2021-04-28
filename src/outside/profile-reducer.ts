@@ -228,7 +228,7 @@ export const getStatusThunkCreator = (userId: number) => async (dispatch: (actio
 
 export const updateStatusThunkCreator = (status: string) => async (dispatch: (action: ActionsType) => void) => {
     let response = await profileAPI.updateStatus(status)
-    if (response.resultCode === 0) {
+    if (!response.resultCode) {
         dispatch(setStatus(status))
     }
 }
