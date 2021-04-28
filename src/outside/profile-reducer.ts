@@ -1,6 +1,6 @@
-import { v1 } from 'uuid'
-import { profileAPI } from '../api/api'
-import { ActionsType } from './redux-store'
+import {v1} from "uuid"
+import {profileAPI} from "../api/api"
+import {ActionsType} from "./redux-store"
 
 export type PostType = {
     id: string
@@ -42,74 +42,86 @@ export type ProfilePagePropsType = {
 }
 
 export type AddPostActionType = {
-    type: 'ADD-POST'
+    type: "ADD-POST"
     newPostText: string
 }
 
 export type LikePostActionType = {
-    type: 'LIKE-POST'
+    type: "LIKE-POST"
     postID: string
 }
 
 export type UnlikePostActionType = {
-    type: 'UNLIKE-POST'
+    type: "UNLIKE-POST"
     postID: string
 }
 
 export type SetUserProfileActionType = {
-    type: 'SET-USER-PROFILE'
+    type: "SET-USER-PROFILE"
     profile: ProfileType
 }
 
 export type SetStatusActionType = {
-    type: 'SET-STATUS'
+    type: "SET-STATUS"
     status: string
 }
 
 export type DeletePostActionType = {
-    type: 'DELETE-POST'
+    type: "DELETE-POST"
     postID: string
 }
 
-const ADD_POST = 'ADD-POST'
-const LIKE = 'LIKE-POST'
-const UNLIKE = 'UNLIKE-POST'
-const SET_USER_PROFILE = 'SET-USER-PROFILE'
-const SET_STATUS = 'SET-STATUS'
-const DELETE_POST = 'DELETE-POST'
+const ADD_POST = "ADD-POST"
+const LIKE = "LIKE-POST"
+const UNLIKE = "UNLIKE-POST"
+const SET_USER_PROFILE = "SET-USER-PROFILE"
+const SET_STATUS = "SET-STATUS"
+const DELETE_POST = "DELETE-POST"
 
 export let initialState = {
     profile: {
-        aboutMe: '',
+        aboutMe: "",
         contacts: {
-            facebook: '',
-            website: '',
-            vk: '',
-            instagram: '',
-            youtube: '',
-            github: '',
-            mainLink: ''
+            facebook: "",
+            website: "",
+            vk: "",
+            instagram: "",
+            youtube: "",
+            github: "",
+            mainLink: ""
         },
         lookingForAJob: false,
-        lookingForAJobDescription: '',
-        fullName: '',
+        lookingForAJobDescription: "",
+        fullName: "",
         userId: NaN,
         photos: {
-            small: '',
-            large: ''
+            small: "",
+            large: ""
         }
     },
-    status: '',
+    status: "",
     posts: [
-        { id: v1(), message: 'Want to decorate the interior in purple shades? Not sure where to start?' +
-                'Where to get the cheapest wallpaper? How to save on furniture?', time: '22:00', liked: true, likesCount: 12 },
-        { id: v1(), message: 'Want to decorate the interior in purple shades? Not sure where to start?' +
-                'Where to get the cheapest wallpaper? How to save on furniture?', time: '23:00', liked: false, likesCount: 11 }
+        {
+            id: v1(),
+            message: "Want to decorate the interior in purple shades? Not sure where to start?" +
+                "Where to get the cheapest wallpaper? How to save on furniture?",
+            time: "22:00",
+            liked: true,
+            likesCount: 12
+        },
+        {
+            id: v1(),
+            message: "Want to decorate the interior in purple shades? Not sure where to start?" +
+                "Where to get the cheapest wallpaper? How to save on furniture?",
+            time: "23:00",
+            liked: false,
+            likesCount: 11
+        }
     ]
 }
 
 const profileReducer = (state: ProfilePagePropsType = initialState, action: ActionsType): ProfilePagePropsType => {
-    let copyState = { ...state }
+    let copyState = {...state}
     switch (action.type) {
         case ADD_POST: {
             const newPost: PostType = {
@@ -119,8 +131,8 @@ const profileReducer = (state: ProfilePagePropsType = initialState, action: Acti
                 liked: false,
                 likesCount: 0
             }
-            if (newPost.message !== '') {
-                copyState = { ...state, posts: [...state.posts, newPost] }
+            if (newPost.message !== "") {
+                copyState = {...state, posts: [...state.posts, newPost]}
             }
             return copyState
         }
@@ -129,7 +141,7 @@ const profileReducer = (state: ProfilePagePropsType = initialState, action: Acti
                 ...state,
                 posts: state.posts.map(p => {
                     if (p.id === action.postID) {
-                        return { ...p, liked: true, likesCount: p.likesCount + 1 }
+                        return {...p, liked: true, likesCount: p.likesCount + 1}
                     }
                     return p
                 })
@@ -139,7 +151,7 @@ const profileReducer = (state: ProfilePagePropsType = initialState, action: Acti
                 ...state,
                 posts: state.posts.map(p => {
                     if (p.id === action.postID) {
-                        return { ...p, liked: false, likesCount: p.likesCount - 1 }
+                        return {...p, liked: false, likesCount: p.likesCount - 1}
                     }
                     return p
                 })
@@ -204,32 +216,20 @@ export const deletePost = (postID: string): DeletePostActionType => {
     }
 }
 
-export const getUserProfileThunkCreator = (userId: number) => {
-    return (dispatch: (action: ActionsType) => void) => {
-        profileAPI.getProfile(userId)
-            .then(data => {
-                dispatch(setUserProfile(data))
-            })
-    }
+export const getUserProfileThunkCreator = (userId: number) => async (dispatch: (action: ActionsType) => void) => {
+    let response = await profileAPI.getProfile(userId)
+    dispatch(setUserProfile(response))
 }
 
-export const getStatusThunkCreator = (userId: number) => {
-    return (dispatch: (action: ActionsType) => void) => {
-        profileAPI.getStatus(userId)
-            .then(data => {
-                dispatch(setStatus(data))
-            })
-    }
+export const getStatusThunkCreator = (userId: number) => async (dispatch: (action: ActionsType) => void) => {
+    let response = await profileAPI.getStatus(userId)
+    dispatch(setStatus(response))
 }
 
-export const updateStatusThunkCreator = (status: string) => {
-    return (dispatch: (action: ActionsType) => void) => {
-        profileAPI.updateStatus(status)
-            .then(data => {
-                if (data.resultCode === 0) {
-                    dispatch(setStatus(status))
-                }
-            })
+export const updateStatusThunkCreator = (status: string) => async (dispatch: (action: ActionsType) => void) => {
+    let response = await profileAPI.updateStatus(status)
+    if (response.resultCode === 0) {
+        dispatch(setStatus(status))
     }
 }
 
