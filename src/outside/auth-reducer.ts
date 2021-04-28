@@ -43,7 +43,7 @@ export const setAuthUserData = (userId: number | null, login: string | null, ema
     }
 }
 
-export const getAuthUserDataThunkCreator = (): ThunkType => {
+/*export const getAuthUserDataThunkCreator = (): ThunkType => {
     return (dispatch: ThunkDispatch<AppStateType, unknown, ActionsType>) => {
         return authAPI.getAuth()
             .then(data => {
@@ -53,9 +53,16 @@ export const getAuthUserDataThunkCreator = (): ThunkType => {
                 }
             })
     }
+}*/
+export const getAuthUserDataThunkCreator = (): ThunkType => async (dispatch) => {
+    let response = await authAPI.getAuth();
+                if (response.resultCode === 0) {
+                    const { id, login, email } = response.data
+                    dispatch(setAuthUserData(id, login, email, true))
+                }
 }
 
-export const loginThunkCreator = (email: string, password: string, rememberMe: boolean): ThunkType => {
+/*export const loginThunkCreator = (email: string, password: string, rememberMe: boolean): ThunkType => {
     return (dispatch: ThunkDispatch<AppStateType, unknown, ActionsType | FormAction>) => {
         authAPI.login(email, password, rememberMe)
             .then(data => {
@@ -67,9 +74,18 @@ export const loginThunkCreator = (email: string, password: string, rememberMe: b
                 }
             })
     }
+}*/
+export const loginThunkCreator = (email: string, password: string, rememberMe: boolean): ThunkType => async (dispatch: ThunkDispatch<AppStateType, unknown, ActionsType | FormAction>) => {
+       let response = await authAPI.login(email, password, rememberMe)
+                if (response.resultCode === 0) {
+                    dispatch(getAuthUserDataThunkCreator())
+                } else {
+                    let message = response.messages.length > 0 ? response.messages[0] : 'Some error'
+                    dispatch(stopSubmit('login', { _error: message }))
+                }
 }
 
-export const logoutThunkCreator = (): ThunkType => {
+/*export const logoutThunkCreator = (): ThunkType => {
     return (dispatch: ThunkDispatch<AppStateType, unknown, ActionsType>) => {
         authAPI.logout()
             .then(data => {
@@ -78,6 +94,13 @@ export const logoutThunkCreator = (): ThunkType => {
                 }
             })
     }
-}
+}*/
+export const logoutThunkCreator = (): ThunkType => async (dispatch: ThunkDispatch<AppStateType, unknown, ActionsType>) => {
+        let response = await authAPI.logout()
+        if (response.resultCode === 0) {
+            dispatch(setAuthUserData(null, null, null, false))
+        }
+    }
+
 
 export default authReducer
