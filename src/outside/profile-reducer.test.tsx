@@ -31,22 +31,29 @@ let state = {
     ]
 }
 
-test('new post length should be incremented', () => {
+test('new post length should be incremented', () => {      //done
     let action = AddPostActionCreator('it-kamasutra.com');
     let newState = profileReducer(state, action);
 
     expect(newState.posts.length).toBe(3);
 })
 
-test('looking for a job should be false', () => {
+test('looking for a job should be false', () => {    //done
     let action = AddPostActionCreator('it-kamasutra.com');
     let newState = profileReducer(state, action);
 
     expect(newState.profile?.lookingForAJob).toBe(false);
 })
 
-test('length of messages after deleting should be decrement', () => {
-    let action = deletePost('1');
+test('length of messages after deleting should be decrement', () => {  //done
+    let action = deletePost(state.posts[0].id);
+    let newState = profileReducer(state, action);
+
+    expect(newState.posts.length).toBe(1);
+})
+
+test('after deleting length should not be changed if id isn\'t correct', () => {   //done
+    let action = deletePost('213');
     let newState = profileReducer(state, action);
 
     expect(newState.posts.length).toBe(2);
