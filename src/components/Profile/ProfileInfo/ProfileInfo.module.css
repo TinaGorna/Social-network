@@ -56,58 +56,8 @@
     background: #f6f6f6;
     border-radius: 8px;
 }
-.status:focus {
+/*.status:focus {
     outline: none;
     border: 1px solid #a10000;
     background: linear-gradient(to top, #fefcea, #858585);
-}
-
-
-
-/*.followBtn{
-    margin-right: 20px;
-    margin-top: 50px;
-}*/
-/*.myyogaclasses{
-
-}*/
-/*
-
-.userItemLocation{
-    font-size: 17px;
-    margin: 0 10px 10px 0;
-    color: rgba(199, 199, 199, 0.88);
-}
-
-.userItemStatus{
-    width: 350px;
-    font-size: 17px;
-    margin: 10px 10px 10px 0;
-    color: rgba(199, 199, 199, 0.88);
-}
-
-.followBtn{
-    margin-right: 20px;
-    margin-top: 50px;
-}
-
-.followBtn button {
-    width: 100px;
-    border-radius: 15px;
-    background-color: rgba(199, 199, 199, 0.88);
-    color: rgba(199, 199, 199, 0.88);
-    font-weight: bold;
-    font-size: 18px;
-    font-family: 'Monserrat';
-    outline: none;
-    text-align: center;
-}
-
-.page{
-    color: rgba(194, 194, 194, 0.82);
-}
-
-.selectedPage{
-    color: rgb(255, 254, 254);
-    font-weight: bold;
 }*/

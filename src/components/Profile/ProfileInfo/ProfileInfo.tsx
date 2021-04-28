@@ -27,7 +27,7 @@ const ProfileInfo = (props: ProfileInfoPropsType) => {
                     <ProfileStatusWithHooks status={props.status}
                                             updateUserStatus={props.updateUserStatus} />
                     <div className={styles.myyogaclasses}>
-                        <div className={styles.title}>Join my Yoga classes (Click)</div>
+                        <div className={styles.title}>Join my Yoga classes</div>
                         <div>{props.profile.lookingForAJobDescription}</div>
                     </div>
                     <div className={styles.title}>About me</div>

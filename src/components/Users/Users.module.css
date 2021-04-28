@@ -1,7 +1,45 @@
 .userPhoto {
     width: 100px;
     height: 100px;
+  /*  margin-left: 20px;*/
 }
 .selectedPage {
-    font-weight: bold;
+    font-weight: normal;
 }
+.userItemProfileInfo {
+    font-size: 20px;
+    font-family: 'Monserrat';
+    /*margin: 5px 0px 5px 15px;*/
+    width: 490px;
+    color: #000000;
+}
+/*.followBtn {
+    cursor: pointer;
+    border: 1px solid #cecece;
+    background: #f6f6f6;
+    box-shadow: inset 0 20px 20px #ffffff;
+    border-radius: 8px;
+    padding: 8px 14px;
+    width: 120px;
+}*/
+/*
+.followBtn {
+    cursor: pointer;
+    border: 1px solid #cecece;
+    background: #f6f6f6;
+    box-shadow: inset 0 20px 20px #ffffff;
+    border-radius: 8px;
+    padding: 8px 14px;
+    width: 120px;
+}
+.followBtn:focus {
+    outline:none;
+}
+.followBtn:hover {
+    box-shadow: inset 0 -20px 20px #ffffff;
+}
+.followBtn:active {
+    margin-top: 1px;
+    margin-bottom: -1px;
+    zoom: 1;
+}*/
