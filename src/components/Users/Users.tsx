@@ -1,6 +1,4 @@
 import React from "react";
-
-
 import userPhoto from "../../assets/images/user-icon.png"
 import styles from "./Users.module.css";
 import {NavLink} from "react-router-dom";
@@ -18,21 +16,17 @@ type UsersPropsType = {
 }
 
 const Users = (props: UsersPropsType) => {
-
     let pagesCount = Math.ceil(props.totalUsersCount / props.pageSize)
-
-    // let pages = []
-    // for (let i = 1; i <= pagesCount; i++) {
-    //   pages.push(i)
-    // }
 
     return <div>
         {
             props.users.map(u => <div key={u.id} className={styles.userItem}>
                 <div>
                     <NavLink to={"/profile/" + u.id}>
-                        <img className={styles.userPhoto} src={u.photos.small !== null ? u.photos.small : userPhoto}
-                             alt="friend"/>
+                        <img
+                            className={styles.userPhoto}
+                            src={u.photos.small !== null ? u.photos.small : userPhoto}
+                            alt="friend"/>
                     </NavLink>
                 </div>
                 <div className={styles.userItemProfileInfo}>
@@ -41,12 +35,13 @@ const Users = (props: UsersPropsType) => {
                     <div className={styles.userItemStatus}>{"props.status"}</div>
                 </div>
                 <div className={styles.followBtn}>
-                    {
-                        u.followed
-                            ? <button disabled={props.followingInProgress.some(id => id === u.id)} onClick={() => {
+                    {u.followed
+                        ? <button
+                            disabled={props.followingInProgress.some(id => id === u.id)}
+                            onClick={() => {
                                 props.unfollow(u.id)
-                            }
-                            } style={{
+                            }}
+                            style={{
                                 backgroundColor: "gray",
                                 fontFamily: "Monserrat",
                                 fontSize: "20px",
@@ -54,10 +49,12 @@ const Users = (props: UsersPropsType) => {
                                 boxShadow: "inset 0 20px 20px #ffffff",
                                 borderRadius: "8px"
                             }}>Unfollow</button>
-                            : <button disabled={props.followingInProgress.some(id => id === u.id)} onClick={() => {
+                        : <button
+                            disabled={props.followingInProgress.some(id => id === u.id)}
+                            onClick={() => {
                                 props.follow(u.id)
-                            }
-                            } style={{
+                            }}
+                            style={{
                                 backgroundColor: "#f6f6f6",
                                 fontFamily: "Monserrat",
                                 fontSize: "20px",
@@ -73,13 +70,6 @@ const Users = (props: UsersPropsType) => {
             </div>)
         }
         <div>
-            {/* {
-            pages.map(p => {
-              return <span
-                className={this.props.currentPage === p ? styles.selectedPage : styles.page}
-                onClick={(e) => { this.onPageChanged(p) }} >{p}</span>
-            })
-          } */}
             <Pagination totalCount={pagesCount} onPageChanged={props.onPageChanged}/>
         </div>
     </div>

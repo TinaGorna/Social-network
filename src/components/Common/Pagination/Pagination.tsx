@@ -33,7 +33,6 @@ export default function Pagination(props: PaginationPropsType) {
             <ul className={classes.ul}>
                 {items.map(({ page, type, selected, ...item }, index) => {
                     let children = null;
-
                     if (type === 'start-ellipsis' || type === 'end-ellipsis') {
                         children = '…';
                     } else if (type === 'page') {

@@ -43,13 +43,9 @@ class ProfileStatus extends React.Component<ProfileStatusPropsType> {
                 status: this.props.status
             })
         }
-        // let a = this.props
-        // let b = this.state
-        // console.log('componentDidUpdate')
     }
 
     render() {
-        // console.log('render')
         return (
             <div className={styles.profileInfoStatus}>
                 <div className={styles.title}>

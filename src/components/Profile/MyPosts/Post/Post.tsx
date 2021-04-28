@@ -1,5 +1,6 @@
 import React from 'react';
 import styles from './Post.module.css';
+import Image from '../../../Common/images/image.svg'
 
 type PostPropsType = {
     id: string
@@ -12,16 +13,15 @@ type PostPropsType = {
 }
 
 const Post = (props: PostPropsType) => {
-
     return (
         <div className={styles.postItemWrapper}>
             <img src='https://i.pinimg.com/564x/e8/42/55/e842551f1287148f65da67e35daf2a39.jpg' alt='post' />
             <div className={styles.postItem}>
                 {props.message}
+                {/*<div className={styles.postImage}>
+                    <img src={Image}/>
+                </div>*/}
                 <div className={styles.postLikeTimeWrapper}>
-                   {/* <div className={styles.iphone}>
-                    <img src='https://store.storeimages.cdn-apple.com/4982/as-images.apple.com/is/iphone-12-purple-select-2021?wid=940&hei=1112&fmt=png-alpha&qlt=80&.v=1617130317000'/>
-                    </div>*/}
                     <div className={styles.postLike}>
                         {
                             props.liked

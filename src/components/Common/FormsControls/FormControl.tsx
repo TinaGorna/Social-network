@@ -1,28 +1,28 @@
-import React from 'react';
-import styles from './FormControl.module.css'
+import React from "react";
+import styles from "./FormControl.module.css"
 
 type TextAreaPropsType = {
     input: any
     meta: any
 }
 
-export const Textarea: React.FC<TextAreaPropsType> = ({ input, meta, ...props }) => {
+export const Textarea: React.FC<TextAreaPropsType> = ({input, meta: {touched, error}, ...props}) => {
     // console.log(meta)
-    const hasError = meta.touched && meta.error
+    const hasError = touched && error
     return (
-        <div className={styles.formControl + ' ' + (hasError ? styles.error : '')}>
+        <div className={styles.formControl + " " + (hasError ? styles.error : "")}>
             <textarea {...input} {...props} />
-            {hasError && <span>{meta.error}</span>}
+            {hasError && <span>{error}</span>}
         </div>
     );
 };
 
-export const Input: React.FC<TextAreaPropsType> = ({ input, meta, ...props }) => {
-    const hasError = meta.touched && meta.error
+export const Input: React.FC<TextAreaPropsType> = ({input, meta: {touched, error}, ...props}) => {
+    const hasError = touched && error
     return (
-        <div className={styles.formControl + ' ' + (hasError ? styles.error : '')}>
+        <div className={styles.formControl + " " + (hasError ? styles.error : "")}>
             <input {...input} {...props} />
-            {hasError && <span>{meta.error}</span>}
+            {hasError && <span>{error}</span>}
         </div>
     );
 };

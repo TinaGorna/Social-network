@@ -48,7 +48,6 @@ class ProfileContainer extends React.Component<ProfileContainerPropsType> {
     }
 
     render() {
-        // console.log('Render PROFILE')
         return (
             <div>
                 <Profile
@@ -62,7 +61,6 @@ class ProfileContainer extends React.Component<ProfileContainerPropsType> {
 }
 
 let mapStateToProps = (state: AppStateType) => {
-    // console.log('mapStateToProps PROFILE')
     return {
         profile: state.profilePage.profile,
         status: state.profilePage.status,
@@ -71,12 +69,8 @@ let mapStateToProps = (state: AppStateType) => {
     }
 }
 
-// const AuthRedirectComponent = withAuthRedirect(ProfileContainer)
-
-// const WithUrlDataContainerComponent = withRouter(AuthRedirectComponent)
 
 export default compose<React.ComponentType>(
-    // withAuthRedirect,
     connect(mapStateToProps, { getUserProfile: getUserProfileThunkCreator, getUserStatus: getStatusThunkCreator, updateUserStatus: updateStatusThunkCreator }),
     withRouter
 )(ProfileContainer);

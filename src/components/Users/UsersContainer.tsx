@@ -1,9 +1,6 @@
 import React from 'react';
 import { connect } from 'react-redux';
-
-
 import Users from './Users';
-
 import { compose } from 'redux';
 import { withAuthRedirect } from '../../hoc/WithAuthRedirect';
 import {
@@ -23,8 +20,6 @@ import {
     getTotalUsersCount,
     getUsers
 } from "../../outside/users-selector";
-
-
 
 
 type MapStateToPropsType = {
@@ -50,11 +45,13 @@ type UsersContainerPropsType = MapStateToPropsType & MapDispatchToPropsType
 class UsersContainer extends React.Component<UsersContainerPropsType> {
 
     componentDidMount() {
-        this.props.getUsers(this.props.currentPage, this.props.pageSize)
+        const {currentPage,pageSize } = this.props
+        this.props.getUsers(currentPage, pageSize)
     }
 
     onPageChanged = (pageNumber: number) => {
-        this.props.getUsers(pageNumber, this.props.pageSize)
+        const {pageSize} = this.props
+        this.props.getUsers(pageNumber, pageSize)
     }
 
     render() {
@@ -72,18 +69,6 @@ class UsersContainer extends React.Component<UsersContainerPropsType> {
     }
 }
 
-
-// let mapStateToProps = (state: AppStateType) => {
-//   return {
-//     users: state.usersPage.users,
-//     pageSize: state.usersPage.pageSize,
-//     totalUsersCount: state.usersPage.totalUsersCount,
-//     currentPage: state.usersPage.currentPage,
-//     isFetching: state.usersPage.isFetching,
-//     followingInProgress: state.usersPage.followingInProgress
-//   }
-// }
-
 let mapStateToProps = (state: AppStateType) => {
     console.log('mapStateToProps USERS')
     return {
@@ -95,30 +80,6 @@ let mapStateToProps = (state: AppStateType) => {
         followingInProgress: getFollowingInProgress(state)
     }
 }
-
-// let mapDispatchToProps = (dispatch: (action: ActionsType) => void) => {
-//   return {
-//     follow: (userID: number) => {
-//       dispatch(followAC(userID))
-//     },
-//     unfollow: (userID: number) => {
-//       dispatch(unfollowAC(userID))
-//     },
-//     setUsers: (users: Array<UserType>) => {
-//       dispatch(setUsersAC(users))
-//     },
-//     setCurrentPage: (currentPage: number) => {
-//       dispatch(setCurrentPageAC(currentPage))
-//     },
-//     setTotalUsersCount: (totalUsersCount: number) => {
-//       dispatch(setTotalUsersCountAC(totalUsersCount))
-//     },
-//     toggleIsFetching: (isFetching: boolean) => {
-//       dispatch(toggleIsFetchingAC(isFetching))
-//     }
-//   }
-// }
-
 
 export default compose<React.ComponentType>(
     withAuthRedirect,

@@ -50,6 +50,8 @@
     font-size: 25px;
     font-style: unset;
     padding-block-start: 25px;
+    cursor: pointer;
+    text-decoration: none;
 }
 
 .logo img{
