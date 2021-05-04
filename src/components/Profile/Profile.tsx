@@ -4,7 +4,7 @@ import ProfileInfo from './ProfileInfo/ProfileInfo';
 import {ProfileType} from "../../outside/profile-reducer";
 
 export type ProfilePropsType = {
-    profile: ProfileType | null
+    profile: ProfileType
     status: string
     updateUserStatus: (status: string) => void
 }
@@ -16,7 +16,8 @@ const Profile = (props: ProfilePropsType) => {
             <ProfileInfo
                 profile={props.profile}
                 status={props.status}
-                updateUserStatus={props.updateUserStatus} />
+                updateUserStatus={props.updateUserStatus}
+            />
             <MyPostsContainer />
         </div>
     )

@@ -11,13 +11,10 @@ export type PostType = {
 }
 
 export type ContactType = {
-    facebook: string | null
     website: string | null
-    vk: string | null
     instagram: string | null
     youtube: string | null
     github: string | null
-    mainLink: string | null
 }
 
 export type PhotoType = {
@@ -33,10 +30,11 @@ export type ProfileType = {
     fullName: string
     userId: number
     photos: PhotoType
+
 }
 
 export type ProfilePagePropsType = {
-    profile: ProfileType | null
+    profile: ProfileType
     status: string
     posts: Array<PostType>
 }
@@ -71,24 +69,27 @@ export type DeletePostActionType = {
     postID: string
 }
 
+export type SavePhotoActionType = {
+    type: "SAVE_PHOTO_SUCCESS"
+    photos: PhotoType
+}
+
 const ADD_POST = "ADD-POST"
 const LIKE = "LIKE-POST"
 const UNLIKE = "UNLIKE-POST"
 const SET_USER_PROFILE = "SET-USER-PROFILE"
 const SET_STATUS = "SET-STATUS"
 const DELETE_POST = "DELETE-POST"
+const SAVE_PHOTO_SUCCESS = "SAVE_PHOTO_SUCCESS"
 
 export let initialState = {
     profile: {
         aboutMe: "",
         contacts: {
-            facebook: "",
             website: "",
-            vk: "",
             instagram: "",
             youtube: "",
-            github: "",
-            mainLink: ""
+            github: ""
         },
         lookingForAJob: false,
         lookingForAJobDescription: "",
@@ -169,6 +170,10 @@ const profileReducer = (state: ProfilePagePropsType = initialState, action: Acti
             return {
                 ...state, posts: state.posts.filter(post => post.id !== action.postID)
             }
+        case SAVE_PHOTO_SUCCESS:
+            return {
+                ...state, profile: {...state.profile, photos: action.photos}
+            }
         default:
             return state
     }
@@ -215,6 +220,12 @@ export const deletePost = (postID: string): DeletePostActionType => {
         postID
     }
 }
+export const savePhotoSuccess = (photos: PhotoType): SavePhotoActionType => {
+    return {
+        type: SAVE_PHOTO_SUCCESS,
+        photos
+    }
+}
 
 export const getUserProfileThunkCreator = (userId: number) => async (dispatch: (action: ActionsType) => void) => {
     let response = await profileAPI.getProfile(userId)
@@ -232,5 +243,10 @@ export const updateStatusThunkCreator = (status: string) => async (dispatch: (ac
         dispatch(setStatus(status))
     }
 }
-
+export const savePhoto = (file: string) => async (dispatch: (action: ActionsType) => void ) => {
+    let response = await profileAPI.savePhoto(file);
+    if (response.data.resultCode === 0) {
+        dispatch(savePhotoSuccess(response.data.data.photos))
+    }
+}
 export default profileReducer

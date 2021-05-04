@@ -1,22 +1,22 @@
-import React from 'react';
-import { RouteComponentProps, withRouter } from 'react-router-dom';
-import { connect } from 'react-redux';
-import Profile from './Profile';
-import { compose } from 'redux';
+import React from "react";
+import {RouteComponentProps, withRouter} from "react-router-dom";
+import {connect} from "react-redux";
+import Profile from "./Profile";
+import {compose} from "redux";
 import {
     getStatusThunkCreator,
     getUserProfileThunkCreator,
-    ProfileType,
+    ProfileType, savePhoto,
     updateStatusThunkCreator
 } from "../../outside/profile-reducer";
 import {AppStateType} from "../../outside/redux-store";
 
-type PathParamsType = {
+export type PathParamsType = {
     userId: string
 }
 
 type MapStateToPropsType = {
-    profile: ProfileType | null
+    profile: ProfileType
     status: string
     authorizedUserId: number
     isAuth: boolean
@@ -34,17 +34,25 @@ type ProfileContainerPropsType = RouteComponentProps<PathParamsType> & OwnPropsT
 
 
 class ProfileContainer extends React.Component<ProfileContainerPropsType> {
-
-    componentDidMount() {
+    refreshProfile() {
         let userId = Number(this.props.match.params.userId)
         if (!userId) {
             userId = this.props.authorizedUserId
             if (!userId) {
-                this.props.history.push('/login')
+                this.props.history.push("/login")
             }
         }
         this.props.getUserProfile(userId)
         this.props.getUserStatus(userId)
+    }
+
+    componentDidMount() {
+        this.refreshProfile()
+    }
+
+    componentDidUpdate(prevProps: Readonly<ProfileContainerPropsType>, prevState: Readonly<{}>, snapshot?: any) {
+        /*if (this.props.match.params.userId !== this.prevProps.match.params.userId)*/
+        this.refreshProfile()
     }
 
     render() {
@@ -54,7 +62,8 @@ class ProfileContainer extends React.Component<ProfileContainerPropsType> {
                     {...this.props}
                     profile={this.props.profile}
                     status={this.props.status}
-                    updateUserStatus={this.props.updateUserStatus} />
+                    updateUserStatus={this.props.updateUserStatus}
+                />
             </div>
         )
     }
@@ -71,6 +80,10 @@ let mapStateToProps = (state: AppStateType) => {
 
 
 export default compose<React.ComponentType>(
-    connect(mapStateToProps, { getUserProfile: getUserProfileThunkCreator, getUserStatus: getStatusThunkCreator, updateUserStatus: updateStatusThunkCreator }),
+    connect(mapStateToProps, {
+        getUserProfile: getUserProfileThunkCreator,
+        getUserStatus: getStatusThunkCreator,
+        updateUserStatus: updateStatusThunkCreator/*, savePhoto*/
+    }),
     withRouter
 )(ProfileContainer);

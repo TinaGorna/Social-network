@@ -2,6 +2,7 @@
   "name": "my-app",
   "version": "0.1.0",
   "private": true,
+  "homepage": "https://TinaGorna.github.io/social-network",
   "dependencies": {
     "@material-ui/core": "^4.11.3",
     "@material-ui/lab": "^4.0.0-alpha.57",
@@ -15,6 +16,7 @@
     "@types/react-redux": "^7.1.16",
     "axios": "^0.21.1",
     "final-form": "^4.20.2",
+    "gh-pages": "^3.1.0",
     "material-ui-pagination": "^1.1.6",
     "react": "^17.0.1",
     "react-dom": "^17.0.1",
@@ -35,7 +37,9 @@
     "start": "react-scripts start",
     "build": "react-scripts build",
     "test": "react-scripts test",
-    "eject": "react-scripts eject"
+    "eject": "react-scripts eject",
+    "predeploy": "npm run build",
+    "deploy": "gh-pages -d build"
   },
   "eslintConfig": {
     "extends": [

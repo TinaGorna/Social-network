@@ -3,9 +3,14 @@ import thunkMiddleware from 'redux-thunk'
 import { reducer as formReducer } from 'redux-form';
 
 import profileReducer, {
-    AddPostActionType, DeletePostActionType, LikePostActionType, SetStatusActionType, SetUserProfileActionType,
+    AddPostActionType,
+    DeletePostActionType,
+    LikePostActionType,
+    SavePhotoActionType,
+    SetStatusActionType,
+    SetUserProfileActionType,
     UnlikePostActionType
-} from './profile-reducer'
+} from "./profile-reducer"
 import dialogsReducer, { SendMessageActionType } from './dialogs-reducer'
 import usersReducer, {
     FollowActionType, SetUsersActionType, SetCurrentPageActionType,
@@ -13,7 +18,7 @@ import usersReducer, {
     ToggleIsFollowingProgressActionType,
     FakeActionType,
 } from './users-reducer'
-import authReducer, { SetUserDataActionType } from "./auth-reducer";
+import authReducer, {SetUserDataActionType} from "./auth-reducer";
 import appReducer, { InitializedSuccessActionType } from './app-reducer';
 
 type ReducersType = typeof reducers
@@ -26,7 +31,8 @@ let reducers = combineReducers({
     usersPage: usersReducer,
     auth: authReducer,
     app: appReducer,
-    form: formReducer
+    form: formReducer,
+   /* captcha: getCaptchaUrlSuccess*/
 })
 
 let store  = createStore(reducers, applyMiddleware(thunkMiddleware))
@@ -51,6 +57,7 @@ export type ActionsType =
     | InitializedSuccessActionType
     | FakeActionType
     | DeletePostActionType
+    | SavePhotoActionType
 
 // @ts-ignore
 window.store = store
